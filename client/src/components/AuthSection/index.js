@@ -1,15 +1,17 @@
-import React, {createRef, useCallback, useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {FaUser, FaLock, FaAt, FaVk, FaGoogle} from "react-icons/fa";
 import signin_img from "../../images/AuthPage/auth_login_image.svg"
 import signup_img from "../../images/AuthPage/auth_registation_image.svg"
 import "./AuthElements.css"
 import {Button3} from "../Buttons/ButtonElement";
-import {Button4} from "../Buttons/ButtonElement";
 import {useHttp} from "../../hooks/http.hook";
 import {useMessage} from "../../hooks/message.hook";
-import {toast, ToastContainer} from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import {AuthContext} from "../../context/AuthContext";
+import {dispatchLogin} from '../../redux/actions/authAction'
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -17,6 +19,8 @@ import {AuthContext} from "../../context/AuthContext";
 export const AuthSection = (primary, dark, dark2) => {
     const auth = useContext(AuthContext)
     const [isContainerActive, setIsContainerActive] = useState(false);
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const signUpButton = () => {
         setIsContainerActive(true);
@@ -55,10 +59,14 @@ export const AuthSection = (primary, dark, dark2) => {
             const data = await request('/user/login', 'POST', {...form})
             message(data.message)
             auth.login(data.token, data.userId)
+            dispatch(dispatchLogin())
+            navigate("/");
 
         } catch (e) {
 
         }
+
+
     }
     return(
         <>
