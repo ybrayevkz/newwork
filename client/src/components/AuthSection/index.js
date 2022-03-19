@@ -35,6 +35,15 @@ export const AuthSection = (primary, dark, dark2) => {
     const [form, setForm] = useState({
         email: '', password: ''
     })
+
+    const [rform, setRform] = useState({
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+        cf_password: ''
+    })
+
     const message = useMessage()
     useEffect(() => {
         message(error)
@@ -47,7 +56,7 @@ export const AuthSection = (primary, dark, dark2) => {
 
     const registerHandler = async () => {
         try{
-            const data = await request('api/auth/register', 'POST', {...form})
+            const data = await request('/user/register', 'POST', {...form})
             message(data.message)
         } catch (e) {
             
@@ -115,7 +124,7 @@ export const AuthSection = (primary, dark, dark2) => {
                             </div>
                             <div className="input-field">
                                 <i><FaLock /></i>
-                                <input type="password" id="password2" name="password2" placeholder="Подтвердите пароль" onChange={changeHandler}/>
+                                <input type="password" id="cf_password" name="cf_password" placeholder="Подтвердите пароль" onChange={changeHandler}/>
                             </div>
                             <Button3 className="btn" disabled={loading} onClick={registerHandler} >Зарегистрироваться</Button3>
 

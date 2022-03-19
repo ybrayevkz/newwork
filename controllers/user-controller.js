@@ -8,24 +8,33 @@ const {verify} = require("jsonwebtoken");
 const UserController = {
     register: async (req, res) => {
         try{
-            const {firstname, lastname, email, password} = req.body
+            const {firstname, lastname, email, password, cf_password} = req.body
 
             if(!firstname || !lastname || !email || !password){
-                return res.status(400).json({msg: "Please fill in all fields."})
+                return res.status(400).json({message: "Пожалуйста заполните все поля."})
+            }
+
+            if(firstname.length < 2 || lastname.length < 2){
+                return res.status(400).json({message: "Имя и фамилия не должны иметь меньше двух символов."})
             }
 
             if(!validateEmail(email)){
-                return res.status(400).json({msg: "Invalid emails."})
+                return res.status(400).json({message: "Неправильная почта, попробуйте еще раз."})
             }
+
 
             const user = await Users.findOne({email})
 
             if(user){
-                res.status(400).json({msg: "This email already exists."})
+                return res.status(400).json({message: "Такой email уже зарегистрировано."})
             }
 
             if(password.length < 8){
-                return res.status(400).json({msg: "Password must be at least 8 characters"})
+                return res.status(400).json({message: "Пароль должен быть не меньше 8 символов."})
+            }
+
+            if(password!=cf_password){
+                return res.status(400).json({message: "Ошибка при подтверждении пароля, попробуйте заново."})
             }
 
             const passwordHash = await bcrypt.hash(password, 12)
@@ -43,7 +52,7 @@ const UserController = {
 
 
 
-            res.json({msg: "Пользователь создан"})
+            res.json({message: "Ваши данные приняты, пожалуйста, подтвердите через почту."})
         } catch (e) {
             return res.status(500).json({msg: e.message})
         }

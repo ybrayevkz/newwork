@@ -1,11 +1,6 @@
 import React from "react";
 import './App.css';
-import {Home} from "./pages";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import {AuthorsPage} from "./pages/AuthorsPage";
-import {ContactsPage} from "./pages/ContactsPage";
-import {PolicyPage} from "./pages/PolicyPage";
-import {AuthPage} from "./pages/AuthPage";
 import 'materialize-css'
 import {useRoutes} from "./routes";
 import {useAuth} from "./hooks/auth.hook";

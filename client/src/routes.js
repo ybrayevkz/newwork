@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
+import {Routes, Route, Navigate} from "react-router-dom";
 import {Home} from "./pages";
 import {AuthorsPage} from "./pages/AuthorsPage";
 import {ContactsPage} from "./pages/ContactsPage";
@@ -9,6 +9,7 @@ import {ProfilePage} from "./pages/ProfilePage";
 import {AboutWebPage} from "./pages/AboutWebPage";
 import {CertificationPage} from "./pages/CertificationPage";
 import {AboutCoursesPage} from "./pages/AboutCoursesPage";
+import {ActivationSuccessPage} from "./pages/ActivationSuccessPage";
 
 export const useRoutes = isAuthenticated =>{
     if(isAuthenticated){
@@ -36,6 +37,7 @@ export const useRoutes = isAuthenticated =>{
             <Route path='/aboutweb' element={<AboutWebPage />} />
             <Route path='/certification' element={<CertificationPage />} />
             <Route path='/aboutcourses' element={<AboutCoursesPage />} />
+            <Route path='/user/activate/:activation_token' element={<ActivationSuccessPage />} />
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     )
