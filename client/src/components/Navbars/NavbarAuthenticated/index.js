@@ -13,17 +13,14 @@ import {NavBtnLink} from "./NavbarElements";
 import {IconContext} from "react-icons/lib";
 import logo from '../../../images/Logos/my_final_logo.png';
 import {NavLogoIcon} from "./NavbarElements";
-import {AuthContext} from '../../../context/AuthContext'
 import {animateScroll as scroll} from "react-scroll";
 
 
 export const NavbarAuthenticated = ({ toggle }) => {
     const navigate = useNavigate()
-    const auth = useContext(AuthContext)
 
     const logoutHandler = event => {
         event.preventDefault()
-        auth.logout()
         navigate('/')
     }
 

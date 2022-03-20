@@ -8,16 +8,13 @@ import {useHttp} from "../../hooks/http.hook";
 import {useMessage} from "../../hooks/message.hook";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
-import {AuthContext} from "../../context/AuthContext";
 import {dispatchLogin} from '../../redux/actions/authAction'
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 
 
-
 export const AuthSection = (primary, dark, dark2) => {
-    const auth = useContext(AuthContext)
     const [isContainerActive, setIsContainerActive] = useState(false);
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -67,7 +64,7 @@ export const AuthSection = (primary, dark, dark2) => {
         try{
             const data = await request('/user/login', 'POST', {...form})
             message(data.message)
-            auth.login(data.token, data.userId)
+            localStorage.setItem('firstLogin', true)
             dispatch(dispatchLogin())
             navigate("/");
 

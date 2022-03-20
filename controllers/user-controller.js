@@ -126,7 +126,6 @@ const UserController = {
 
                 const access_token = createAccessToken({id: user.id})
                 res.json({access_token})
-                console.log(user)
             })
 
         } catch (e) {

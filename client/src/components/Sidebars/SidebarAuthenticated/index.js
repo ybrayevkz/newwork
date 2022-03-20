@@ -8,15 +8,13 @@ import {SidebarMenu} from "./SidebarElements";
 import {SideBtnWrap} from "./SidebarElements";
 import {SidebarRoute} from "./SidebarElements";
 import {useNavigate} from "react-router-dom";
-import {AuthContext} from "../../../context/AuthContext";
 
 export const SidebarAuthenticated = ({ toggle, isOpen }) => {
     const navigate = useNavigate()
-    const auth = useContext(AuthContext)
+
 
     const logoutHandler = event => {
         event.preventDefault()
-        auth.logout()
         navigate('/')
     }
     return(

@@ -12,31 +12,18 @@ import {AboutCoursesPage} from "./pages/AboutCoursesPage";
 import {ActivationSuccessPage} from "./pages/ActivationSuccessPage";
 
 export const useRoutes = isAuthenticated =>{
-    if(isAuthenticated){
-        return(
-            <Routes>
-                <Route path='/' element={<Home />} exact />
-                <Route path='/authors' element={<AuthorsPage />} exact />
-                <Route path='/contacts' element={<ContactsPage />} exact />
-                <Route path='/policy' element={<PolicyPage />} exact />
-                <Route path='/profile/:id' element={<ProfilePage />} />
-                <Route path='/aboutweb' element={<AboutWebPage />} />
-                <Route path='/certification' element={<CertificationPage />} />
-                <Route path='/aboutcourses' element={<AboutCoursesPage />} />
-                <Route path="*" element={<Navigate to="/profile/:id" />} />
-            </Routes>
-        )
-    }
-    return (
+    return(
         <Routes>
             <Route path='/' element={<Home />} exact />
             <Route path='/authors' element={<AuthorsPage />} exact />
             <Route path='/contacts' element={<ContactsPage />} exact />
             <Route path='/policy' element={<PolicyPage />} exact />
-            <Route path='/auth' element={<AuthPage />} exact />
+            <Route path='/profile/:id' element={<ProfilePage />} />
             <Route path='/aboutweb' element={<AboutWebPage />} />
             <Route path='/certification' element={<CertificationPage />} />
             <Route path='/aboutcourses' element={<AboutCoursesPage />} />
+            {/*<Route path="*" element={<Navigate to="/profile/:id" />} />*/}
+            <Route path='/auth' element={<AuthPage />} exact />
             <Route path='/user/activate/:activation_token' element={<ActivationSuccessPage />} />
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>

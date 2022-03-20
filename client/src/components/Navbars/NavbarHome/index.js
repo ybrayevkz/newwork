@@ -6,6 +6,7 @@ import {MobileIcon} from "./NavbarElements";
 import {NavMenu} from "./NavbarElements";
 import {NavItem} from "./NavbarElements";
 import {NavLinks} from "./NavbarElements";
+//import {NavLinks as NavLinkHome} from "../Navbar/NavbarElements"
 import {FaBars} from "react-icons/fa"
 import {NavBtn} from "./NavbarElements";
 import {NavBtnLink} from "./NavbarElements";
@@ -13,10 +14,26 @@ import {IconContext} from "react-icons/lib";
 import {animateScroll as scroll} from "react-scroll";
 import logo from "../../../images/Logos/my_final_logo.png"
 import {NavLogoIcon} from "./NavbarElements";
+import {useSelector} from "react-redux";
 
 
 export const NavbarHome = ({ toggle }) => {
     const [scrollNav, setScrollNav] = useState(false);
+
+    const auth = useSelector(state => state.auth)
+
+    const {user, isLogged} = auth
+
+    const userLink = () => {
+        return (
+            <NavItem>
+                <NavLinks to='about' smooth={true} duration={500} spy={true}
+                          exact ='true' offset={-80}>
+                    {user.firstname} {user.lastname}
+                </NavLinks>
+            </NavItem>
+        )
+    }
 
     const changeNav = () => {
         if(window.scrollY >= 80){
@@ -61,9 +78,12 @@ export const NavbarHome = ({ toggle }) => {
                                           exact ='true' offset={-80}>Зарегистрироваться</NavLinks>
                             </NavItem>
                         </NavMenu>
-                        <NavBtn>
-                            <NavBtnLink to='/auth'>Войти</NavBtnLink>
-                        </NavBtn>
+                        {
+                            isLogged ? userLink() : <NavBtn>
+                                <NavBtnLink to='/auth'>Войти</NavBtnLink>
+                            </NavBtn>
+                        }
+
                     </NavbarContainer>
                 </Nav>
             </IconContext.Provider>
