@@ -10,8 +10,12 @@ import {AboutWebPage} from "./pages/AboutWebPage";
 import {CertificationPage} from "./pages/CertificationPage";
 import {AboutCoursesPage} from "./pages/AboutCoursesPage";
 import {ActivationSuccessPage} from "./pages/ActivationSuccessPage";
+import {useSelector} from "react-redux";
+import {NotFoundPage} from "./pages/NotFoundPage";
 
 export const useRoutes = isAuthenticated =>{
+    const auth = useSelector(state => state.auth)
+    const {isLogged} = auth;
     return(
         <Routes>
             <Route path='/' element={<Home />} exact />
@@ -23,7 +27,7 @@ export const useRoutes = isAuthenticated =>{
             <Route path='/certification' element={<CertificationPage />} />
             <Route path='/aboutcourses' element={<AboutCoursesPage />} />
             {/*<Route path="*" element={<Navigate to="/profile/:id" />} />*/}
-            <Route path='/auth' element={<AuthPage />} exact />
+            <Route path='/auth' element={isLogged ? <NotFoundPage /> : <AuthPage />} exact />
             <Route path='/user/activate/:activation_token' element={<ActivationSuccessPage />} />
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>

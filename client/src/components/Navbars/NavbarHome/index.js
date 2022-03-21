@@ -6,7 +6,7 @@ import {MobileIcon} from "./NavbarElements";
 import {NavMenu} from "./NavbarElements";
 import {NavItem} from "./NavbarElements";
 import {NavLinks} from "./NavbarElements";
-//import {NavLinks as NavLinkHome} from "../Navbar/NavbarElements"
+import {NavLinks as NavLinkHome} from "../Navbar/NavbarElements"
 import {FaBars} from "react-icons/fa"
 import {NavBtn} from "./NavbarElements";
 import {NavBtnLink} from "./NavbarElements";
@@ -15,6 +15,7 @@ import {animateScroll as scroll} from "react-scroll";
 import logo from "../../../images/Logos/my_final_logo.png"
 import {NavLogoIcon} from "./NavbarElements";
 import {useSelector} from "react-redux";
+import axios from "axios";
 
 
 export const NavbarHome = ({ toggle }) => {
@@ -24,16 +25,52 @@ export const NavbarHome = ({ toggle }) => {
 
     const {user, isLogged} = auth
 
+    const handleLogout = async () => {
+        try{
+            await axios.get('/user/logout');
+            localStorage.removeItem('firstLogin');
+            window.location.href = "/";
+        } catch (e) {
+            window.location.href = "/";
+        }
+    }
+
     const userLink = () => {
         return (
             <NavItem>
-                <NavLinks to='about' smooth={true} duration={500} spy={true}
+                <NavLinkHome to='about' smooth={true} duration={500} spy={true}
                           exact ='true' offset={-80}>
-                    {user.firstname} {user.lastname}
-                </NavLinks>
+                    <NavLogoIcon src={user.avatar} alt='logo' />
+                </NavLinkHome>
             </NavItem>
         )
     }
+
+    const userRegister = () => {
+        return (
+            <>
+            </>
+        )
+    }
+
+    const logoutButton = () => {
+        return(
+            <NavBtn>
+                <NavBtnLink to="/" onClick={handleLogout}>Выход</NavBtnLink>
+            </NavBtn>
+        )
+    }
+
+    const userPage = () => {
+        return(
+            <NavItem>
+                <NavLinks to='signup' smooth={true} duration={500} spy={true}
+                          exact ='true' offset={-80}>Мой профиль</NavLinks>
+            </NavItem>
+        )
+    }
+
+
 
     const changeNav = () => {
         if(window.scrollY >= 80){
@@ -73,16 +110,28 @@ export const NavbarHome = ({ toggle }) => {
                                 <NavLinks to='services' smooth={true} duration={500} spy={true}
                                           exact ='true' offset={-80}>О курсах</NavLinks>
                             </NavItem>
-                            <NavItem>
-                                <NavLinks to='signup' smooth={true} duration={500} spy={true}
-                                          exact ='true' offset={-80}>Зарегистрироваться</NavLinks>
-                            </NavItem>
+                            {isLogged ? userPage() : userRegister()}
+
+                            {
+                                isLogged ? userRegister() : <NavItem>
+                                    <NavLinks to='signup' smooth={true} duration={500} spy={true}
+                                              exact ='true' offset={-80}>Зарегистрироваться</NavLinks>
+                                </NavItem>
+                            }
+
+
+                            {
+                                isLogged ? userLink() : <NavBtn>
+                                    <NavBtnLink to='/auth'>Войти</NavBtnLink>
+                                </NavBtn>
+                            }
+
+                            {
+                                isLogged ? logoutButton() : userRegister()
+                            }
+
                         </NavMenu>
-                        {
-                            isLogged ? userLink() : <NavBtn>
-                                <NavBtnLink to='/auth'>Войти</NavBtnLink>
-                            </NavBtn>
-                        }
+
 
                     </NavbarContainer>
                 </Nav>
