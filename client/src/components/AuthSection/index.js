@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FaUser, FaLock, FaAt, FaVk, FaGoogle} from "react-icons/fa";
 import signin_img from "../../images/AuthPage/auth_login_image.svg"
 import signup_img from "../../images/AuthPage/auth_registation_image.svg"
@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css"
 import {dispatchLogin} from '../../redux/actions/authAction'
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import { Link } from "react-router-dom"
 
 
 
@@ -90,8 +91,12 @@ export const AuthSection = (primary, dark, dark2) => {
                                 <i><FaLock /></i>
                                 <input type="password" id="password" name="password" placeholder="Введите пароль" onChange={changeHandler}/>
                             </div>
-                            <Button3 onClick={loginHandler} disabled={loading} className="btn">Войти</Button3>
+                            <Button3 onClick={loginHandler} disabled={loading} className="btn">Войти</Button3><br/>
+
+                            <Link to="forgot_password" className="forgot_password">Забыли пароль?</Link><br/>
+
                             <p className="social-text">Или вы можете войти через другие платформы, как:</p>
+
                             <div className="social-media">
                                 <a href="#" className="social-icon">
                                     <i><FaGoogle /></i>

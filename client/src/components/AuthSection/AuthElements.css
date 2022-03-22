@@ -6,6 +6,11 @@
     overflow: hidden;
 }
 
+.forgot_password{
+    text-decoration: none;
+    color: #01bf71;
+}
+
 .forms-container {
     position: absolute;
     width: 100%;

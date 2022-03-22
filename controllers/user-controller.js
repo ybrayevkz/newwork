@@ -138,17 +138,28 @@ const UserController = {
             const {email} = req.body
             const user = await Users.findOne({email})
 
-            if(!user){
-                return res.status(400).json({msg: "This email does not exist."})
+            if(!email){
+                return res.status(400).json({message: "Пожалуйста, заполните все поля."})
             }
+
+            if(!validateEmail(email)){
+                return res.status(400).json({message: "Неправильная почта, попробуйте еще раз."})
+            }
+
+            if(!user){
+                return res.status(400).json({message: "Такой адресс почты не зарегистрирован."})
+            }
+
+
+
 
             const access_token = createAccessToken({id: user.id})
             const url = `${CLIENT_URL}/user/reset/${access_token}`
 
-            sendMail(email, url, "Reset your password")
-            res.json({msg: "Re-send the password, please check your email."})
+            sendMail(email, url, "Восстановление дступа к аккаунту.")
+            res.json({message: "Мы отправили письмо к вам на почту, пожалуйста проверьте свою почту."})
         } catch (e) {
-            return res.status(500).json({msg: e.message})
+            return res.status(500).json({message: e.message})
         }
     },
 
