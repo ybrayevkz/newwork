@@ -64,7 +64,7 @@ export const NavbarHome = ({ toggle }) => {
     const userPage = () => {
         return(
             <NavItem>
-                <NavLinks to='signup' smooth={true} duration={500} spy={true}
+                <NavLinks to='my_page' smooth={true} duration={500} spy={true}
                           exact ='true' offset={-80}>Мой профиль</NavLinks>
             </NavItem>
         )

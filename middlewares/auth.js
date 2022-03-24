@@ -9,7 +9,7 @@ const auth = (req, res, next) => {
 
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (e, user) => {
             if(e){
-                return res.status(400).json({msg: e.message})
+                return res.status(400).json({message: e.message})
             }
 
             req.user = user

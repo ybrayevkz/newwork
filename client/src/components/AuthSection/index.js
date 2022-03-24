@@ -12,6 +12,8 @@ import {dispatchLogin} from '../../redux/actions/authAction'
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import { Link } from "react-router-dom"
+import { GoogleLogin } from "react-google-login";
+
 
 
 
@@ -75,6 +77,20 @@ export const AuthSection = (primary, dark, dark2) => {
 
 
     }
+
+    const responseGoogle = async (response) => {
+        console.log(response)
+        try{
+            const res = await request('/user/google_login', "POST", {tokenId: response.tokenId})
+            message(res.message)
+            localStorage.setItem('firstLogin', true)
+            dispatch(dispatchLogin())
+            navigate("/");
+
+        } catch (e) {
+            
+        }
+    }
     return(
         <>
             <div className={`container ${isContainerActive ? "sign-up-mode" : ""}`}>
@@ -98,12 +114,21 @@ export const AuthSection = (primary, dark, dark2) => {
                             <p className="social-text">Или вы можете войти через другие платформы, как:</p>
 
                             <div className="social-media">
-                                <a href="#" className="social-icon">
-                                    <i><FaGoogle /></i>
-                                </a>
-                                <a href="#" className="social-icon">
-                                    <i><FaVk /></i>
-                                </a>
+                                {/*<a href="#" className="social-icon">*/}
+                                {/*    <i><FaGoogle /></i>*/}
+                                {/*</a>*/}
+                                {/*<a href="#" className="social-icon">*/}
+                                {/*    <i><FaVk /></i>*/}
+                                {/*</a>*/}
+
+                                <GoogleLogin
+                                    clientId="993801750687-83hsa6sdhso34h3oarv7c05v1t8m2tru.apps.googleusercontent.com"
+                                    buttonText="Войти с помощью google"
+                                    onSuccess={responseGoogle}
+                                    cookiePolicy={'single_host_origin'}
+                                />
+
+
                             </div>
                         </form>
                         <form action="#" className="sign-up-form">

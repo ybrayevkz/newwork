@@ -4,6 +4,9 @@ const jwt = require('jsonwebtoken')
 const {CLIENT_URL} = process.env
 const sendMail = require('./send-mail')
 const {verify} = require("jsonwebtoken");
+const {google} = require('googleapis')
+const {OAuth2} = google.auth
+const client = new OAuth2(process.env.MAILING_SERVICE_CLIENT_ID)
 
 const UserController = {
     register: async (req, res) => {
@@ -33,7 +36,7 @@ const UserController = {
                 return res.status(400).json({message: "Пароль должен быть не меньше 8 символов."})
             }
 
-            if(password!=cf_password){
+            if(password != cf_password){
                 return res.status(400).json({message: "Ошибка при подтверждении пароля, попробуйте заново."})
             }
 
@@ -153,8 +156,9 @@ const UserController = {
 
 
 
-            const access_token = createAccessToken({id: user.id})
-            const url = `${CLIENT_URL}/user/reset/${access_token}`
+            const access_token = createAccessToken({id: user._id})
+            const url = `${CLIENT_URL}/auth/forgot_password/reset_password/${access_token}`
+
 
             sendMail(email, url, "Восстановление дступа к аккаунту.")
             res.json({message: "Мы отправили письмо к вам на почту, пожалуйста проверьте свою почту."})
@@ -165,15 +169,26 @@ const UserController = {
 
     resetPassword: async (req, res) => {
         try {
-            const {password} = req.body
-            console.log(password)
+            const {password, cf_password} = req.body
+
+            if(!password || !cf_password){
+                return res.status(400).json({message: "Пожалуйста, заполните все поля!"})
+            }
+
+            if(password.length < 8){
+                return res.status(400).json({message: "Пароль должен составлять минимум 8 символов."})
+            }
+
+            if(password != cf_password){
+                return res.status(400).json({message: "Пароль неправильно подтвержден, пожалуйста, попробуйте еще раз."})
+            }
             const passwordHash = await bcrypt.hash(password, 12)
 
             await Users.findOneAndUpdate({_id: req.user.id}, {
                 password: passwordHash
             })
 
-            res.json({msg: "Password successfully changed"})
+            return res.json({message: "Пароль успешно заменен. Для того что бы продолжить, переавторизуйтесь!"})
         }
 
         catch (e) {
@@ -240,7 +255,61 @@ const UserController = {
 
             res.json({msg: "Deleted Success!"})
         } catch (e) {
-            return res.status(500).json({msg: e.message})
+            return res.status(500).json({message: e.message})
+        }
+    },
+    googleLogin: async (req, res) => {
+        try{
+            const {tokenId} = req.body
+
+            const verify = await client.verifyIdToken({idToken: tokenId, audience: process.env.MAILING_SERVICE_CLIENT_ID})
+
+            console.log(verify)
+
+            const {email_verified, email, given_name, family_name, picture} = verify.payload
+
+            const password = email + process.env.GOOGLE_SECRET
+
+            const passwordHash = await bcrypt.hash(password, 12)
+
+            if(!email_verified){
+                return res.status(400).json({message: "Email неуспешно верифицирован. "})
+            }
+
+            const user = await Users.findOne({email})
+            if(user){
+                const isMatch = await bcrypt.compare(password, user.password)
+
+                if(!isMatch){
+                    return res.status(400).json({message: "Неправильный пароль, попробуйте еще раз."})
+                }
+                const refresh_token = createRefreshToken({id: user._id})
+                res.cookie('refreshtoken', refresh_token, {
+                    httpOnly: true,
+                    path: '/user/refresh_token',
+                    maxAge: 7 * 24 * 60 * 60 * 1000
+                })
+
+                res.json({message: "Вы успешно вошли в аккаунт."})
+            } else{
+                const newUser = new Users({
+                    firstname: given_name, lastname: family_name, email, password: passwordHash, avatar: picture
+                })
+
+                await newUser.save()
+
+                const refresh_token = createRefreshToken({id: newUser._id})
+                res.cookie('refreshtoken', refresh_token, {
+                    httpOnly: true,
+                    path: '/user/refresh_token',
+                    maxAge: 7 * 24 * 60 * 60 * 1000
+                })
+
+                res.json({message: "Вы успешно вошли в аккаунт."})
+
+            }
+        } catch (e) {
+            return res.status(500).json({message: e.message})
         }
     }
 }

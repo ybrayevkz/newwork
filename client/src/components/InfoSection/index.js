@@ -12,8 +12,13 @@ import {BtnWrap} from "./InfoElements";
 import {Column2} from "./InfoElements";
 import {ImgWrap} from "./InfoElements";
 import {Img} from "./InfoElements"
+import {useSelector} from "react-redux";
 export const InfoSection = ({lightBg, id, imgStart, topLine, lightText, headline, darkText, description, buttonLabel,
                             img, alt, primary, dark, dark2, direct}) => {
+
+    const auth = useSelector(state => state.auth)
+
+    const {user, isLogged} = auth
 
     return(
         <>

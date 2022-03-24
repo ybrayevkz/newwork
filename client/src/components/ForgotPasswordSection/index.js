@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {useHttp} from "../../hooks/http.hook";
 import {useMessage} from "../../hooks/message.hook";
-
 import {Link} from "react-router-dom";
-import {FaUser, FaLock, FaAt, FaVk, FaGoogle} from "react-icons/fa";
+import {FaAt} from "react-icons/fa";
 import {Button3} from "../Buttons/ButtonElement";
 import {ToastContainer} from "react-toastify"
 import {

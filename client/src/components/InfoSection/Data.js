@@ -1,6 +1,7 @@
 import homepage_programmer_image from "../../images/HomePage/homepage_programmer.svg";
 import homepage_account_image from "../../images/HomePage/homepage_account.svg";
 import homepage_certication_image from "../../images/HomePage/homepage_certification.svg";
+import profile_page_image from "../../images/HomePage/profile_page_image.svg"
 
 
 
@@ -55,6 +56,25 @@ export const homeObjThree = {
     alt: 'homepage_accont_image',
     dark: false,
     direct: '/auth',
+    primary: false,
+    darkText: true
+}
+
+export const homeObjFour = {
+    id: 'my_page',
+    lightBg: true,
+    lightText: false,
+    lightTextDesc: false,
+    topLine: 'Личный профильный кабинет',
+    headline: 'Вы можете отредактировать ваш личный профильный кабинет.',
+    description: 'Все что вы изучали и все ваши результаты вы можете увидеть в вашем профильном кабинете. Что бы перейти нажмите' +
+        ' на кнопку "Мой профиль".',
+    buttonLabel: 'Мой профиль',
+    imgStart: false,
+    img: profile_page_image,
+    alt: 'Profile_Page_Image',
+    dark: false,
+    direct: '/profile',
     primary: false,
     darkText: true
 }

@@ -3,11 +3,12 @@ import {SidebarHome} from "../components/Sidebars/SidebarHome";
 import {Navbar, NavbarHome} from "../components/Navbars/NavbarHome";
 import {HeroSection} from "../components/HeroSection";
 import {InfoSection} from "../components/InfoSection";
-import {homeObjOne} from "../components/InfoSection/Data";
+import {homeObjFour, homeObjOne} from "../components/InfoSection/Data";
 import {homeObjTwo} from "../components/InfoSection/Data";
 import {homeObjThree} from "../components/InfoSection/Data";
 import {Services} from "../components/Services";
 import {Footer} from "../components/Footer";
+import {useSelector} from "react-redux";
 
 export const Home = (props) => {
 
@@ -15,6 +16,10 @@ export const Home = (props) => {
     const toggle = () =>{
         setIsOpen(!isOpen)
     }
+
+    const auth = useSelector(state => state.auth)
+
+    const {user, isLogged} = auth
 
     return(
         <>
@@ -24,7 +29,10 @@ export const Home = (props) => {
             <InfoSection {...homeObjOne}/>
             <InfoSection {...homeObjTwo}/>
             <Services />
-            <InfoSection {...homeObjThree}/>
+            {
+                isLogged ? <InfoSection {...homeObjFour}/> : <InfoSection {...homeObjThree}/>
+            }
+
             <Footer />
         </>
     )
