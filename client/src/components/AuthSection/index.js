@@ -17,6 +17,7 @@ import { GoogleLogin } from "react-google-login";
 
 
 
+
 export const AuthSection = (primary, dark, dark2) => {
     const [isContainerActive, setIsContainerActive] = useState(false);
     const dispatch = useDispatch()
@@ -91,6 +92,7 @@ export const AuthSection = (primary, dark, dark2) => {
             
         }
     }
+
     return(
         <>
             <div className={`container ${isContainerActive ? "sign-up-mode" : ""}`}>
@@ -127,6 +129,8 @@ export const AuthSection = (primary, dark, dark2) => {
                                     onSuccess={responseGoogle}
                                     cookiePolicy={'single_host_origin'}
                                 />
+
+
 
 
                             </div>
