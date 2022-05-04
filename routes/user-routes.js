@@ -2,7 +2,6 @@ const router = require('express').Router()
 const userController = require('../controllers/user-controller')
 const auth = require('../middlewares/auth')
 const authAdmin = require('../middlewares/auth-admin')
-
 router.post('/register', userController.register)
 router.post('/activation', userController.activateEmail)
 router.post('/login', userController.login)
@@ -16,6 +15,4 @@ router.patch('/update', auth, userController.updateUser)
 router.patch('/update_role/:id', auth, authAdmin, userController.updateUsersRole)
 router.delete('/delete/:id', auth, authAdmin, userController.deleteUser)
 router.post('/google_login', userController.googleLogin)
-
-
 module.exports = router

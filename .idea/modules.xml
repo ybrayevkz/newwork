@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Balerke_Shop/.idea/Balerke_Shop.iml" filepath="$PROJECT_DIR$/../Balerke_Shop/.idea/Balerke_Shop.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/full_auth.iml" filepath="$PROJECT_DIR$/.idea/full_auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lab/.idea/lab.iml" filepath="$PROJECT_DIR$/../lab/.idea/lab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../labhtml2/.idea/labhtml2.iml" filepath="$PROJECT_DIR$/../labhtml2/.idea/labhtml2.iml" />
       <module fileurl="file://$PROJECT_DIR$/../my_app/.idea/my_app.iml" filepath="$PROJECT_DIR$/../my_app/.idea/my_app.iml" />
     </modules>
   </component>

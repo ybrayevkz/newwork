@@ -9,5 +9,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="my_app" />
+    <orderEntry type="module" module-name="lab" />
+    <orderEntry type="module" module-name="Balerke_Shop" />
+    <orderEntry type="module" module-name="labhtml2" />
   </component>
 </module>
