@@ -16,6 +16,7 @@ import {animateScroll as scroll} from "react-scroll";
 import {useSelector} from "react-redux";
 import axios from "axios";
 import {Button5} from "../../Buttons/ButtonElement";
+import {NavAvaIcon} from "./NavbarElements";
 
 
 export const Navbar = ({ toggle }) => {
@@ -43,7 +44,7 @@ export const Navbar = ({ toggle }) => {
             <NavItem>
                 <NavLinkHome to='about' smooth={true} duration={500} spy={true}
                              exact ='true' offset={-80}>
-                    <NavLogoIcon src={user.avatar} alt='logo' />
+                    <NavAvaIcon src={user.avatar} alt='logo' />
                 </NavLinkHome>
             </NavItem>
         )
@@ -52,7 +53,7 @@ export const Navbar = ({ toggle }) => {
     const userPage = () => {
         return(
             <NavItem>
-                <NavLinks to='signup' smooth={true} duration={500} spy={true}
+                <NavLinks to='/profile' smooth={true} duration={500} spy={true}
                           exact ='true' offset={-80}>Мой профиль</NavLinks>
             </NavItem>
         )
@@ -61,7 +62,7 @@ export const Navbar = ({ toggle }) => {
     const logoutButton = () => {
         return(
             <NavBtn>
-                <Button5 onCLick={handleLogout}>Выход</Button5>
+                <NavBtnLink to="/" onClick={handleLogout}>Выход</NavBtnLink>
             </NavBtn>
         )
     }
@@ -115,9 +116,9 @@ export const Navbar = ({ toggle }) => {
                                 </NavBtn>
                             }
 
-                            {/*{*/}
-                            {/*    isLogged ? logoutButton() : userRegister()*/}
-                            {/*}*/}
+                            {
+                                isLogged ? logoutButton() : userRegister()
+                            }
 
                         </NavMenu>
 

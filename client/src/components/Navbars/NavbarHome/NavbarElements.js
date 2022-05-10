@@ -46,6 +46,16 @@ export const NavLogoIcon = styled.img`
   height: 50px;
 `
 
+
+
+export const NavAvaIcon = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  border: 3px solid green;
+  box-shadow: 0 0 7px #666;
+`
+
 export const MobileIcon = styled.div`
   display: none;
   
@@ -119,4 +129,6 @@ export const NavBtnLink = styled(LinkR)`
     color: #010606;
     
   }
+  
+  
 `

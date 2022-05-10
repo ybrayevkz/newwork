@@ -1,6 +1,10 @@
 import React, {useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Link} from 'react-router-dom'
+import "./ProfileElements.css"
+import axios from "axios";
+import {isLength} from "validator";
+import {ToastContainer} from "react-toastify";
 
 
 
@@ -23,11 +27,11 @@ export const ProfileSection = () => {
     const [loading, setLoading] = useState(false)
 
     const [callback, setCallback] = useState(false)
-
-
+    
     return(
         <>
             <div className="profile_page">
+                <ToastContainer />
                 <div className="col-left">
                     <h2>{isAdmin ? "Профиль админа" : "Профиль пользователя"}</h2>
                     <div className="avatar">
@@ -56,12 +60,12 @@ export const ProfileSection = () => {
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" id="password" value={password} placeholder="Your password" />
+                        <input type="password" name="password" id="password"  placeholder="Your password"/>
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="cf_password">Confirm Password</label>
-                        <input type="password" name="cf_password" id="cf_password" value={cf_password} placeholder="Confirm password" />
+                        <input type="password" name="cf_password" id="cf_password" placeholder="Confirm password"/>
                     </div>
 
                     <button disabled={loading}>Обновить</button>
@@ -69,6 +73,24 @@ export const ProfileSection = () => {
 
                 <div className="col-right">
                     <h2>{isAdmin ? "Users" : "MyOrders"}</h2>
+                    <div style={{overflowX: "auto"}}>
+                        <table className="customers">
+                            <thead><tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Admin</th>
+                                <th>Action</th>
+                            </tr></thead>
+                            <tbody>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Email</td>
+                            <td>Admin</td>
+                            <td>Action</td>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </>

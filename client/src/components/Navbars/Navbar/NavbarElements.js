@@ -44,6 +44,15 @@ export const NavLogo = styled(LinkR)`
 export const NavLogoIcon = styled.img`
   width: 50px;
   height: 50px;
+
+`
+
+export const NavAvaIcon = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  border: 3px solid green;
+  box-shadow: 0 0 7px #666;
 `
 
 export const MobileIcon = styled.div`

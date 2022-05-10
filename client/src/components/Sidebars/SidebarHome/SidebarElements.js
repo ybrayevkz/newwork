@@ -24,6 +24,39 @@ export const CloseIcon = styled(FaTimes)`
   
 `
 
+export const SideAvaIcon = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 100px;
+  border: 3px solid green;
+  box-shadow: 0 0 7px #666;
+`
+export const SidebarUserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  list-style: none;
+  transition: 0.2s ease-in-out;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover{
+    color: #01fb71;
+    transition: 0.2s ease-in-out;
+  }
+`
+
+export const SideUserName = styled.div`
+  font-size: 25px;
+
+  &:hover{
+    color: #01fb71;
+    transition: 0.2s ease-in-out;
+  }
+`
 export const Icon = styled.div`
   position: absolute;
   top: 1.2rem;

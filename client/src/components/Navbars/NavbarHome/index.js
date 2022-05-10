@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Nav} from "./NavbarElements";
+import {Nav, NavAvaIcon} from "./NavbarElements";
 import {NavLogo} from "./NavbarElements";
 import {NavbarContainer} from "./NavbarElements";
 import {MobileIcon} from "./NavbarElements";
@@ -40,7 +40,7 @@ export const NavbarHome = ({ toggle }) => {
             <NavItem>
                 <NavLinkHome to='about' smooth={true} duration={500} spy={true}
                           exact ='true' offset={-80}>
-                    <NavLogoIcon src={user.avatar} alt='logo' />
+                    <NavAvaIcon src={user.avatar} alt='logo' />
                 </NavLinkHome>
             </NavItem>
         )
