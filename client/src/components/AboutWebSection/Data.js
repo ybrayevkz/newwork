@@ -29,7 +29,7 @@ export const homeObjTwo = {
     id: 'signup',
     lightBg: false,
     lightText: true,
-    lightTextDesc: false,
+    lightTextDesc: true,
     topLine: 'Немного о web-разработчиках',
     headline: '',
     description: '__Все что связано с интернетом включаю социальные сети и прграммы, платформы, порталы - дело рук web-разработчика.' +
@@ -44,5 +44,5 @@ export const homeObjTwo = {
     dark: false,
     direct: '/auth',
     primary: false,
-    darkText: true
+    darkText: false
 }

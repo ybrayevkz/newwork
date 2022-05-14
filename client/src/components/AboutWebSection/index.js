@@ -10,19 +10,21 @@ import {Subtitle} from "./AboutWebElements";
 import {Column2} from "./AboutWebElements";
 import {ImgWrap} from "./AboutWebElements";
 import {Img} from "./AboutWebElements"
+import {profileObjOne} from "../ProfileSection/Data";
 
 
 export const AboutWebSection = ({lightBg, imgStart, id, topLine, lightText, headline, darkText, description, buttonLabel, img,
                                 alt}) => {
     return(
         <>
+
             <InfoContainer lightBg={lightBg} id={id}>
                 <InfoWrapper>
                     <InfoRow imgStart={imgStart}>
                         <Column1>
                             <TextWrapper>
                                 <TopLine>{topLine}</TopLine>
-                                <Heading lightText={lightText}>{headline}</Heading>
+                                <Heading lightText={lightText} >{headline}</Heading>
                                 <Subtitle darkText={darkText}>{description}</Subtitle>
                                 {/*<BtnWrap>*/}
                                 {/*    <Button4>Button</Button4>*/}

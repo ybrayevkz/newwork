@@ -222,18 +222,47 @@ const UserController = {
         }
     },
     updateUser: async (req, res) => {
+
         try {
-            const {firstname, lastname, avatar} = req.body
+            const {firstname, lastname} = req.body
+
+            if(!firstname || !lastname){
+                return res.status(400).json({message: "Пожалуйста заполните поля для имени и фамилии."})
+            }
+
+            if(firstname.length < 2 || lastname.length < 2){
+                return res.status(400).json({message: "Имя и фамилия не должны иметь меньше двух символов."})
+            }
 
             await Users.findOneAndUpdate({_id: req.user.id}, {
-                firstname, lastname, avatar
+                firstname, lastname
             })
 
-            res.json({msg: "Update Success"})
+            res.json({message: "Ваши данные успешно обновлены!"})
         } catch (e) {
             return res.status(500).json({msg: e.message})
         }
     },
+
+    updateUserAvatar: async (req, res) => {
+
+        try {
+            const {avatar} = req.body
+
+            if(!avatar){
+                return res.status(400).json({message: "Пожалуйста, загрузите фото!"})
+            }
+
+            await Users.findOneAndUpdate({_id: req.user.id}, {
+                avatar
+            })
+
+            res.json({message: "Ваши данные успешно обновлены!"})
+        } catch (e) {
+            return res.status(500).json({msg: e.message})
+        }
+    },
+
     updateUsersRole: async (req, res) => {
         try {
             const {role} = req.body

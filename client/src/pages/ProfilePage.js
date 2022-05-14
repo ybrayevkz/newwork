@@ -6,6 +6,7 @@ import {ProfileSection} from "../components/ProfileSection";
 
 
 
+
 export const ProfilePage = (props) => {
 
     const [isOpen, setIsOpen] = useState(false)

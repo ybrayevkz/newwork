@@ -21,7 +21,7 @@ const uploadController = {
             })
 
         } catch (e) {
-            return res.status(500).json({msg: e.message})
+            return res.status(500).json({message: e.message})
         }
 
     }
