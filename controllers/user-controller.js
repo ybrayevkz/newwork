@@ -49,8 +49,14 @@ const UserController = {
             const activation_token = createActivationToken(newUser)
 
             const url = `${CLIENT_URL}/user/activate/${activation_token}`
+            const title = "Ссылка для активации аккаунта"
+            const p1 = "Добро пожаловать на \"ybrayevweb\". Мы очень рады вас приветствовать!"
+            const p2 = "Вы недавно оставили заявку на регистрацию аккаунта"
+            const p3 = "Для того что бы активировать аккаунт нажмите на кнопку \"Активировать аккаунт\". После того как вы активируете аккаунт вы можете войти в систему и уже записаться на курсы которые вам нравится."
+            const btn = "Активировать аккаунт"
+            const p5 = "Мы уверены что вам понравится наши курсы по веб-технологиям."
 
-            sendMail(email, url, "Verify your email address")
+            sendMail(email, url, title, p1, p2, p3, btn, p5, "Активация аккаунта")
 
 
 
@@ -158,9 +164,13 @@ const UserController = {
 
             const access_token = createAccessToken({id: user._id})
             const url = `${CLIENT_URL}/auth/forgot_password/reset_password/${access_token}`
-
-
-            sendMail(email, url, "Восстановление дступа к аккаунту.")
+            const title = "Ссылка для восстановления пароля"
+            const p1 = "Вы забыли ваш пароль от аккаунта?"
+            const p2 = "Вы недавно оставили заявку на восстановление аккаунта"
+            const p3 = "Для того что бы восстановить аккаунт нажмите на кнопку \"Восстановить пароль\". После того как вы поменяете пароль вы можете войти в систему и заниматься."
+            const btn = "Восстановить пароль"
+            const p5 = "Больше не забывайте ваш пароль :)"
+            sendMail(email, url, title, p1, p2, p3, btn, p5,"Восстановление дступа к аккаунту.")
             res.json({message: "Мы отправили письмо к вам на почту, пожалуйста проверьте свою почту."})
         } catch (e) {
             return res.status(500).json({message: e.message})
