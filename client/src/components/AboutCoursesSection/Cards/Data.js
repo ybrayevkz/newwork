@@ -18,7 +18,8 @@ export const htmlCourse = {
     cardtitle: 'HTML',
     carddescription: 'Хотели ли вы получить сертификат по языку гипертекстовой разметки?',
     img: html,
-    alt: 'Car'
+    alt: 'Car',
+    btnroute: '/aboutcourses/html_course_home'
 
 }
 
@@ -28,6 +29,7 @@ export const cssCourse = {
     carddescription: 'Хотели ли вы получить сертификат по каскадным таблицам стилей?',
     img: css,
     alt: 'Car',
+    btnroute: 'auth'
 }
 export const javascriptCourse = {
     id: 'javascript',
@@ -35,6 +37,7 @@ export const javascriptCourse = {
     carddescription: 'Хотели ли вы получить сертификат по языку программирания JS?',
     img: javascript,
     alt: 'Car',
+    btnroute: 'auth'
 }
 export const typescriptCourse = {
     id: 'typescript',
@@ -42,6 +45,7 @@ export const typescriptCourse = {
     carddescription: 'Хотели ли вы получить сертификат по языку программирания TS?',
     img: typescript,
     alt: 'Car',
+    btnroute: 'auth'
 }
 export const jqueryCourse = {
     id: 'jquery',
@@ -49,6 +53,7 @@ export const jqueryCourse = {
     carddescription: 'Хотели ли вы получить сертификат по набору функции jquery?',
     img: jquery,
     alt: 'Car',
+    btnroute: 'auth'
 }
 export const reactCourse = {
     id: 'react',
@@ -56,6 +61,7 @@ export const reactCourse = {
     carddescription: 'Хотели ли вы получить сертификат по фреймворку React js?',
     img: react,
     alt: 'Car',
+    btnroute: 'auth'
 }
 export const angularCourse = {
     id: 'angular',
@@ -63,6 +69,7 @@ export const angularCourse = {
     carddescription: 'Хотели ли вы получить сертификат по фреймворку Angular js?',
     img: angular,
     alt: 'Car',
+    btnroute: 'auth'
 }
 export const sqlCourse = {
     id: 'sql',
@@ -70,6 +77,7 @@ export const sqlCourse = {
     carddescription: 'Хотели ли вы получить сертификат по языку запросов данных',
     img: sql,
     alt: 'Car',
+    btnroute: 'auth'
 }
 export const phpCourse = {
     id: 'php',
@@ -77,6 +85,7 @@ export const phpCourse = {
     carddescription: 'Хотели ли вы получить сертификат по препроцессору гипертекста PHP',
     img: php,
     alt: 'Car',
+    btnroute: 'auth'
 }
 export const nodejsCourse = {
     id: 'nodejs',
@@ -84,6 +93,7 @@ export const nodejsCourse = {
     carddescription: 'Хотели ли вы получить сертификат по серверной платформе Node JS',
     img: nodejs,
     alt: 'Car',
+    btnroute: 'auth'
 }
 export const pythonCourse = {
     id: 'python',
@@ -91,6 +101,7 @@ export const pythonCourse = {
     carddescription: 'Хотели ли вы получить сертификат по языку программированию Python',
     img: python,
     alt: 'Car',
+    btnroute: 'auth'
 }
 export const javaCourse = {
     id: 'java',
@@ -98,4 +109,5 @@ export const javaCourse = {
     carddescription: 'Хотели ли вы получить сертификат по языку программированию Java',
     img: java,
     alt: 'Car',
+    btnroute: 'auth'
 }

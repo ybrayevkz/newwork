@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
+const path = require('path')
 
 
 const app = express()
@@ -18,6 +19,13 @@ app.use(fileUpload({
 
 app.use('/user', require('./routes/user-routes'))
 app.use('/api', require('./routes/upload'))
+if(process.env.NODE_ENV === 'production'){
+    app.use('/', express.static(path.join(__dirname, 'client', 'build')))
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 const DB_URL = process.env.MONGODB_URL
 mongoose.connect(DB_URL, {

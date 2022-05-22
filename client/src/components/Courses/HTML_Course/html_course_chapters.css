@@ -1,0 +1,125 @@
+.chaptersblock{
+    background: #f7f8fa;
+    border: 4px solid #01bf71;
+}
+.coursename{
+    margin: 8px 0 20px 8px;
+
+}
+.coursename h1{
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+tr{
+    height: 30px;
+}
+table, th, td{
+    width: 100%;
+    text-align: left;
+    margin-top: 5px;
+}
+
+th{
+    font-weight: revert;
+    font-size: 15px;
+
+}
+
+tr:hover {
+    background-color: #01bf71;
+
+}
+tr:checked{
+    background-color: #021212;
+}
+tr a:hover{
+    color: white;
+}
+
+a{
+    margin-left: 8px;
+    text-decoration:none;
+    color: black;
+}
+
+.train_container{
+    padding-right: 5px;
+}
+
+.chaptertopic{
+    font-size: 40px;
+    font-weight: lighter;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px;
+}
+
+.buttons .buttonleft{
+    align-items: flex-start;
+}
+
+.buttons .buttonright{
+    margin-left: auto;
+}
+
+.info{
+    margin-top: 20px;
+
+}
+
+.intro{
+    padding: 20px 10px;
+    background-color: #01bf71;
+    font-weight: bold;
+}
+
+.baseinfo{
+    padding: 0px 10px;
+}
+
+.examplewithbutton{
+    background-color: #acacac;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.examplewithoutbutton{
+
+}
+.examplewithbutton .code{
+    background-color: white;
+    border-left: 4px solid #01bf71;
+    padding: 10px;
+}
+
+.example{
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+.examplebutton{
+    display: flex;
+    margin-top: 10px;
+}
+
+.list{
+    margin-left: 20px;
+}
+.listtitle{
+    font-size: 20px;
+}
+.infoexample{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.infonote{
+    background-color: sandybrown;
+    padding: 20px 20px;
+    border-radius: 5px;
+}

@@ -1,0 +1,14 @@
+.main{
+    margin-top: 80px;
+    height: 100%;
+    display: flex;
+}
+.leftblock iframe{
+    position: sticky;
+}
+.rightblock{
+    width: 100%;
+}
+.rightframe{
+    padding: 20px;
+}
